@@ -8,6 +8,7 @@
     "layer": "module",
     "i18n": [],
     "i18n-extension": ["bundle"],
+    "startLevel": 1,
     "dependencies": {
         "apprt": "4.7.2"
     }
