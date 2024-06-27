@@ -3,7 +3,7 @@
 This project demonstrates how to build a custom language bundle.
 
 ## Build Status
-[![devnet-bundle-snapshot](https://github.com/conterra/mapapps-custom-nls/actions/workflows/mapapps-custom-nls.yml/badge.svg)](https://github.com/conterra/mapapps-custom-nls/actions/workflows/mapapps-custom-nls.yml)
+[![devnet-bundle-snapshot](https://github.com/conterra/mapapps-custom-nls/actions/workflows/devnet-bundle-snapshot.yml/badge.svg)](https://github.com/conterra/mapapps-custom-nls/actions/workflows/devnet-bundle-snapshot.yml)
 
 ## Installation Guide
 ⚠️**Requirement: map.apps 4.18.1**
