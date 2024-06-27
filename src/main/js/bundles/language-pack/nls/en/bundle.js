@@ -1,36 +1,12 @@
 /*
- * Copyright (C) 2019 con terra GmbH (info@conterra.de)
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *         http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ * Copyright (C) con terra GmbH
  */
 module.exports = {
-    "agsprinting-config": {
-        "menu": {
-            "title": "ArcGIS for Server Printing"
-        },
-        "widget": {
-            "description": "Configuration for the ags printing functionality.",
-            "url": {
-                "title": "The URL to the AGS print service",
-                "tooltip": "AGS URL to print service."
-            }
-        }
-    },
     "agssearch": {
         "metadataError": "Error retrieving metadata from store '${id}'. Message: ${error}",
         "defaults": {
             "name": "Feature",
-            "description": "Find featues in an ArcGIS Server layer",
+            "description": "Find features in an ArcGIS Server layer",
             "placeHolder": "Feature name..."
         }
     },
@@ -42,56 +18,66 @@ module.exports = {
             "title": "Automatic ArcGIS Server Store Registration",
             "description": "Configuration for automatic ArcGIS Server store registration",
             "enableTitle": "Enable auto-registration",
-            "enableTooltip": "Check to activate automatic ArcGIS Server Store-Registrierung",
-            "omnisearchTitle": "Use stores in Omni-Search",
-            "omnisearchTooltip": "Check to use stores in Omni-Search",
+            "enableTooltip": "Check to activate automatic ArcGIS Server store registration",
+            "omnisearchTitle": "Use stores in Omnisearch",
+            "omnisearchTooltip": "Check to use stores in Omnisearch",
             "selectionTitle": "Use stores in selection",
             "selectionTooltip": "Check to use stores in Selection"
         }
     },
     "app-portal-registration": {
         "window": {
-            "title": "App '{title}'"
+            "title": "Register App '${title}' in ArcGIS"
         },
         "action": {
-            "title": "Portal for ArcGIS Registration"
+            "title": "Register App in ArcGIS"
         },
         "widget": {
-            "registerButton": "Register",
+            "registerButton": "Register app",
             "cancelButton": "Cancel",
             "closeButton": "Close",
-            "removeButton": "Delete",
+            "removeButton": "Delete app registration",
             "saveButton": "Save",
             "yesButton": "Yes",
             "noButton": "No",
             "appTitlePlaceholder": "Title",
             "appDescriptionPlaceholder": "Description",
-            "oauthActivationLabel": "Use Portal Authentication (OAuth)",
             "thumbnailLabel": "Thumbnail",
-            "registrationHint": "This dialog registers the app as an item for ArcGIS Online/Portal for ArcGIS. After the registration the app is available at: <a target='_blank' href='${portalBaseUrl}'>${portalBaseUrlNoSchema}</a>",
-            "registeredHint": "The selected app is already registered as a Portal Item",
+            "registrationHint": "This dialog registers the app as an item in ArcGIS Enterprise portal respectively ArcGIS Online. After the registration the app is available at: <a target='_blank' href='${portalBaseUrl}'>${portalBaseUrlNoSchema}</a>",
+            "registrationHintWithPortalIdentityProvider": "map.apps is connected to the ArcGIS Enterprise portal, which is available at <a target='_blank' href='${portalBaseUrl}'>${portalBaseUrlNoSchema}</a>. The app is registered there as a portal item.",
+            "portalUrlDoesNotMatchIdPUrl": "The configuration property <i>esri.api.arcgisPortalUrl</i> does not point to the ArcGIS Enterprise portal configured in the <i>con terra Technologies Identity Service</i>. Please change the value to <i>${correctPortalBase}</i> to avoid incorrect behavior.",
+            "registeredHint": "The app is registered as an item in ArcGIS Enterprise portal/ArcGIS Online.",
             "accessDeniedHint": "This app was registered by another user. You cannot perform any changes. The reported error was:</br> <small>${errorMessage}</small>",
-            "portalItemLinkLabel": "Go to Portal Item overview",
+            "portalItemLinkLabel": "Open associated ArcGIS element in new window.",
             "loadingMessage": "Your request is being processed...",
             "removeItemQuestion": {
-                "title": "Remove Portal Item",
-                "message": "Do you really want to remove the Portal Item?",
-                "okButton": "Remove Item",
-                "cancelButton": "Keep"
+                "title": "Delete app registration",
+                "message": "Do you really want to delete the app registration? The associated ArcGIS item will also be deleted.",
+                "okButton": "Delete",
+                "cancelButton": "Cancel"
             },
             "appHasBeenCleaned": "Your app has been cleaned up.",
-            "removeBundlesQuestion": " <p>Do you also want to remove the following bundles from the app? </p><strong>{bundles}</strong>",
-            "portalItemNotFoundTitle": "Item could not be found",
-            "warningMessage": "Users might not be able to access your app since it is not published yet."
+            "removeBundlesQuestion": {
+                "title": "Hint",
+                "message": " <p>The following bundles are usually not needed anymore and will be removed from the app: </p><strong>${bundles}</strong>",
+                "okButton": "Ok",
+                "cancelButton": "Keep bundles"
+            },
+            "portalItemNotFoundTitle": "ArcGIS item could not be found.",
+            "warningMessage": "The app may not be able to be opened by everyone because it is not yet published in map.apps."
         },
         "messages": {
-            "portalRegistrationSuccess": "Registered the app '{title}' as Portal Item.",
-            "portalRegistrationError": "Failed to register the app '{title}' as Portal Item.",
-            "portalDeregistrationSuccess": "Removed the app '{title}' as Portal Item.",
-            "portalDeregistrationError": "Failed to remove the app '{title}' as Portal Item.",
-            "portalUpdateSuccess": "Successfully updated the app '{title}'.",
-            "portalUpdateError": "Failed to update the app '{title}'.",
-            "appJsonSaveError": "Failed to save Portal Item ID. The App has not been registered."
+            "portalRegistrationSuccess": "The app '${title}' has been registered as an ArcGIS item.",
+            "portalRegistrationError": "The app '${title}' could not be registered as an ArcGIS item.",
+            "portalDeregistrationSuccess": "The registration of the app '${title}' has been deleted. The associated ArcGIS item has also been removed.",
+            "portalDeregistrationError": "The registration of the app '${title}' could not be deleted.",
+            "portalUpdateSuccess": "The app '${title}' has been updated.",
+            "portalUpdateError": "The app '${title}' could not be updated.",
+            "appJsonSaveError": "The ID of the ArcGIS item could not be saved for this app. The app was not registered."
+        },
+        "appColumnExtender": {
+            "portalItem": "The app is registered as an ArcGIS item.",
+            "portalItemOauth": "The app is registered as an ArcGIS item and only accessible if the item is shared with the user."
         }
     },
     "appbundlemanagement": {
@@ -108,8 +94,8 @@ module.exports = {
             "productVersionLabel": "Minimal version",
             "previewSelectProductVersion": "Please select a version.",
             "previewRemoveProductVersion": "The latest version is always used. Any existing restrictions will be removed.",
-            "previewWithModifier": "Will be changed to: <strong>{value}</strong>.<br/>Allowed are: <strong>{range}</strong>.",
-            "previewConcreteVersion": "Exactly version <strong>{value}</strong> will be used.",
+            "previewWithModifier": "Will be changed to: <strong>${value}</strong>.<br/>Allowed are: <strong>${range}</strong>.",
+            "previewConcreteVersion": "Exactly version <strong>${value}</strong> will be used.",
             "autoupdatesTitle": "<strong>Update policy</strong>",
             "applyText": "<span>On clicking <strong>Apply</strong> the following settings will be applied to the previously selected apps.</span>",
             "versionLoadText": "Please wait...",
@@ -194,14 +180,11 @@ module.exports = {
             "modifiedBy": "Modified By",
             "modifiedAt": "Modified At",
             "editorState": "State",
-            "appTemplateFilterSelect": {
-                "placeHolder": "Filter by app template",
-                "tooltip": "Show only apps based on a specific app template."
-            }
+            "preoptimized": "Pre-optimized"
         },
         "appBundlesMgmt": {
-            "updateError": "Update of App '{id}' failed. {error}",
-            "updateSuccess": "App '{id}' successfully saved.",
+            "updateError": "Update of App '${id}' failed. ${error}",
+            "updateSuccess": "App '${id}' successfully saved.",
             "appBundlesView": {
                 "name": "Name",
                 "version": "Version",
@@ -213,7 +196,7 @@ module.exports = {
                     "okButton": "Remove Bundle",
                     "cancelButton": "Cancel"
                 },
-                "defaultBundlesRemoveWarning": "The bundle selection contains system bundles, which cannot be removed. These bundles are <b>{appserviceDefaultBundles}</b>.",
+                "defaultBundlesRemoveWarning": "The bundle selection contains system bundles, which cannot be removed. These bundles are <b>${appserviceDefaultBundles}</b>.",
                 "okButton": "Save",
                 "cancelButton": "Cancel"
             },
@@ -248,7 +231,7 @@ module.exports = {
             "launchAppTooltip": "Launch App"
         },
         "appDetailsView": {
-            "windowTitle": "App '{id}'",
+            "windowTitle": "App '${id}'",
             "createWindowTitle": "New App",
             "title": "Title",
             "description": "Description",
@@ -259,17 +242,9 @@ module.exports = {
             "id": "App ID:",
             "templateId": "App Template:",
             "templateModifiedAt": "App Template modified at:",
+            "templateUpload": "Here you have the possibility to upload a zip file to replace the app configuration.",
             "fileName": "File:",
             "editorState": "State",
-            "syncAuto": {
-                "title": "Automatic synchronization:",
-                "tooltip": "Enables automatic synchronization of this app. On every update of the underlying app template, this app will be synchronized with the configured synchronization mode automatically."
-            },
-            "syncMode": {
-                "title": "Synchronization mode:",
-                "tooltip": "<ul><li><b>Replace: </b>In this mode the app will be replaced completely by the app template. All settings of this app as well as edited or added files will be lost.</li><li><b>Merge: </b>In this mode all changes of this app will be merged with the settings of the app template. By default all file changes in the app are lost with the exception of added files and the app.json file. Template changes to the app.json files are applied on a per-component property level. Please consult the <i>Developer Documentation</i> for details and options.<br/><b>After successful synchronization you should review the changes in the app.</b></li></ul>"
-            },
-            "syncedAt": "Synchronized at:",
             "editorStateValues": {
                 "DRAFT": "Draft",
                 "EDITED": "Edited",
@@ -277,14 +252,9 @@ module.exports = {
                 "PUBLISHED": "Published",
                 "DEPRECATED": "Deprecated"
             },
-            "syncModeValues": {
-                "REPLACE": "Replace",
-                "MERGE": "Merge"
-            },
-            "enabled": "Online",
-            "updateError": "Update of App '{id}' failed. {error}",
-            "updateSuccess": "App '{id}' saved succesfully.",
-            "updateStarted": "Saving of App '{id}' started...",
+            "updateError": "Update of App '${id}' failed. ${error}",
+            "updateSuccess": "App '${id}' saved successfully.",
+            "updateStarted": "Saving of App '${id}' started...",
             "choseFileLabel": "Choose a file",
             "createAppInfo": {
                 "id": "Please enter a title and an app ID for your new app. The ID will be used in the URL with which your app will be opened later.",
@@ -302,9 +272,6 @@ module.exports = {
                 "uploadFinished": "Upload Finished",
                 "createDefaultApp": "Default app",
                 "createDefaultAppDescription": "An app that includes frequently used features will be created. Content and other functions can be added to the app afterwards.",
-                "chooseDefaultVersion": "Which map.apps line should the app be based on?",
-                "chooseDefaultVersion3xBtn": "Line 3",
-                "chooseDefaultVersion4xBtn": "Line 4",
                 "createAppWithTemplate": "Use app template",
                 "createAppWithTemplateDescription": "Contents, functions and their configuration are taken from an app template. They can be adapted later.",
                 "appCreationMode": "Please choose, how the new app should be created."
@@ -320,15 +287,15 @@ module.exports = {
             "thumbnailUploadedTitle": "100%",
             "configurePreviewBtn": "Live Configuration",
             "configurePreviewBtnTooltip": "Starts the app and provides a graphical configuration interface. <br/>Changes to the configuration can be checked directly.",
-            "configureFilesBtn": "Manual Configuration",
+            "configureFilesBtn": "App Editor",
             "configureFilesBtnTooltip": "Opens a text editor in which the configuration and other files used in the app can be changed.",
-            "configureOptimizeBtn": "Optimize App",
-            "configureOptimizeBtnTooltip": "Optimizes JavaScript and CSS files added via manual configuration.",
             "configureExportBtn": "Export App",
             "configureExportBtnTooltip": "Exports the app as a zip file. This can be uploaded as a new app template.",
-            "configureSynchronizeBtn": "Synchronize now",
-            "configureBundlesBtn": "Bundles",
+            "configureBundlesBtn": "Manage bundles",
             "configureBundlesBtnTooltip": "Allows to add or remove bundles in this app.",
+            "configureActivatePreoptimizedStateBtn": "Enable pre-optimization",
+            "configureDeactivatePreoptimizedStateBtn": "Disable pre-optimization",
+            "warningAppPreOptimized": "This app is pre-optimized. Some actions are not available in this state.",
             "shareWithAnyone": "Everyone",
             "command": {
                 "Add": "Add new file",
@@ -343,39 +310,36 @@ module.exports = {
                 "okButton": "Delete file",
                 "cancelButton": "Cancel"
             },
-            "unsavedChangesWarningTitle": "Unsaved Changes",
-            "unsavedChangesWarning": "There are unsaved changes. Would you like to save the file?",
-            "saveChangesButton": "Save changes",
-            "discardChangesButton": "Discard",
+            "unsavedChangesWarning": {
+                "title": "Unsaved Changes",
+                "message": "The file '${file}' includes unsaved changes!",
+                "discardChangesButton": "Discard",
+                "backToEditorButton": "Back to Editor"
+            },
+            "ardChangesButton": "Discard",
             "addFileTitle": "Create File",
             "fileNamePlaceHolder": "File Name",
-            "fileExistsError": "A file named {file} already exists.",
+            "fileExistsError": "A file named ${file} already exists.",
             "invalidError": "The file is invalid.",
             "saveChanges": {
                 "okButton": "Yes",
                 "cancelButton": "No"
             },
-            "templateInfo": {
-                "requested": "Template information is currently requested...",
-                "deleted": "Template does not exist anymore.",
-                "directuploaded": "This app was created without using an app template. Here you have the possibility to upload a zip file to replace the app configuration.",
-                "isNewerAsApp": "<span class='text-warning'>The App Template was modified after the last synchronization.</span>"
-            },
             "fileUpload": {
                 "windowTitle": "Replace File Content",
-                "warning": "Plase note that the contents of the existing file will be replacced by the uploaded content without any verification.",
+                "warning": "Please note that the contents of the existing file will be replaced by the uploaded content without any verification.",
                 "upload": "Upload File",
                 "uploaded": "100%"
             }
         },
-        "optimizeError": "Optimization failed. Error: {error}",
-        "optimizeSuccess": "Optimization successfully finished.",
-        "optimizeInfo": "The optimization process may take some time. Are you sure you want to start it now?",
-        "optimizeRunningInfo": "Optimization running...",
-        "synchronizeError": "Synchronization failed. Error: {error}",
-        "synchronizeSuccess": "Synchronization successfully finshed.",
-        "synchronizeInfo": "The synchronization process may take some time.<br/><strong>Any unsaved changes will be lost.</strong><br/>Are you sure you want to start it now?",
-        "synchronizeRunningInfo": "Synchronization running..."
+        "preoptimized_onError": "Pre-optimizing app failed. Error: ${error}",
+        "preoptimized_onSuccess": "Pre-optimizing app successful.",
+        "preoptimized_onInfo": "Pre-optimizing an app may take some time. Are you sure you want to start it now?",
+        "preoptimized_onRunningInfo": "Pre-optimizing app...",
+        "preoptimized_offError": "Disabling pre-optimization failed. Error: ${error}",
+        "preoptimized_offSuccess": "Disabling pre-optimization successful.",
+        "preoptimized_offInfo": "Disabling pre-optimization of an app may take some time. Are you sure you want to start it now?",
+        "preoptimized_offRunningInfo": "Disabling pre-optimization..."
     },
     "appsoverview": {
         "dataViewCommon": {
@@ -413,6 +377,10 @@ module.exports = {
             "VERIFIED": "Verified",
             "PUBLISHED": "Published",
             "DEPRECATED": "Deprecated"
+        },
+        "preoptimized": {
+            "enabled": "Yes",
+            "disabled": "No"
         }
     },
     "apptemplatemanagement": {
@@ -467,7 +435,7 @@ module.exports = {
             "modifiedAt": "Modified At"
         },
         "templatesDetailsView": {
-            "windowTitle": "App Template '{title}'",
+            "windowTitle": "App Template '${title}'",
             "createWindowTitle": "New App Template",
             "title": "Title",
             "description": "Description",
@@ -479,15 +447,13 @@ module.exports = {
             "fileName": "File:",
             "upload": "Upload",
             "uploaded": "100% - Optimize App Template",
-            "updateError": "Update of App Template '{id}' failed. {error}",
-            "updateSuccess": "App Template '{id}' successfully saved.",
-            "uploadStart": "Upload Started",
+            "updateError": "Update of App Template '${id}' failed. ${error}",
+            "updateSuccess": "App Template '${id}' successfully saved.",
             "uploadError": "Upload Error: ",
             "uploadFinished": "Upload Finished",
             "createTemplateInfo": "Enter a name of your new App Template. After the new template was created successfully, you can upload data to it.",
             "panelDefaultTitle": "<strong>Common Information</strong>",
-            "panelFileTitle": "<strong>App Template File</strong>",
-            "syncInfo": "All apps based on this template with 'automatic synchronization' enabled will be synchronized during the upload process."
+            "panelFileTitle": "<strong>App Template File</strong>"
         }
     },
     "authentication": {
@@ -501,11 +467,12 @@ module.exports = {
             "username": "User",
             "password": "Password",
             "logonProcessing": "Perform Login",
-            "logonSuccess": "Login sucessful",
+            "logonSuccess": "Login successful",
             "logonError": "Login failed",
             "logoutAt": "Logout in {timerMin}:{timerSec}",
             "blockWindowTitle": "Authenticate",
-            "blockWindowMsg": "Please wait..."
+            "blockWindowMsg": "Please wait...",
+            "openUsermenu": "Open user menu"
         }
     },
     "banner-config": {
@@ -515,6 +482,7 @@ module.exports = {
             "imageUpload": "Upload image",
             "imageUploadedTitle": "Upload finished",
             "imageUrl": "Define the link to an image",
+            "imageAltText": "Alternative text",
             "imageWidth": "Image Width",
             "label": "Banner text",
             "link": "Banner link",
@@ -528,7 +496,8 @@ module.exports = {
         }
     },
     "basemaptoggler": {
-        "labelTitle": "Basemap"
+        "labelTitle": "Basemap",
+        "ariaLabel": "Basemap selection. Selected basemap is ${currentValue}"
     },
     "bundlemanagement": {
         "commonDelete": {
@@ -536,7 +505,7 @@ module.exports = {
             "saveQuery": "Do you really want to delete {number} bundle(s)?",
             "okButton": "Delete bundles",
             "cancelButton": "Cancel",
-            "error": "Deletion of items '{items}' failed!",
+            "error": "Deletion of items '${items}' failed!",
             "partialSuccess": "Some items could not be deleted!",
             "errorFinish": "No item could be deleted!",
             "success": "Items successfully deleted!"
@@ -582,7 +551,7 @@ module.exports = {
             "productName": "Product Name"
         },
         "bundleDetailsView": {
-            "windowTitle": "Bundle '{id}'",
+            "windowTitle": "Bundle '${id}'",
             "createWindowTitle": "Bundle Upload",
             "name": "Name",
             "version": "Version",
@@ -600,8 +569,8 @@ module.exports = {
             "id": "ID:",
             "upload": "Upload",
             "uploaded": "100% - Extract and Import Bundles",
-            "updateError": "Update of Bundle '{id}' failed! {error}",
-            "updateSuccess": "Bundle '{id}' succesfull saved!",
+            "updateError": "Update of Bundle '${id}' failed! ${error}",
+            "updateSuccess": "Bundle '${id}' successfully saved!",
             "uploadStart": "Upload Started",
             "uploadError": "Upload Error: ",
             "uploadFinished": "Upload Finished",
@@ -609,11 +578,6 @@ module.exports = {
             "panelDefaultTitle": "<strong>Common Information</strong>",
             "panelExtendedTitle": "<strong>Extended Information</strong>",
             "panelJsonInfoTitle": "<strong>package.json</strong>"
-        }
-    },
-    "bundletools": {
-        "bundleToggleTool": {
-            "title": "Start/Stop a bundle"
         }
     },
     "bundleupdatechecker": {
@@ -628,87 +592,6 @@ module.exports = {
             "week": "one week",
             "month": "one month",
             "apply": "Apply"
-        }
-    },
-    "console": {
-        "ui": {
-            "windowTitle": "Console",
-            "bundleTab": "Bundles",
-            "bundlesStoreFields": {
-                "id": "ID",
-                "name": "Name",
-                "description": "Description",
-                "state": "State",
-                "autostartPolicy": "Autostart Policy",
-                "symbolicName": "Symbolic Name",
-                "version": "Version",
-                "startLevel": "Start Level",
-                "vendor": "Vendor",
-                "location": "Location"
-            },
-            "servicesTab": "Services",
-            "servicesStoreFields": {
-                "id": "ID",
-                "provides": "Providing Interfaces",
-                "bundle": "Bundle",
-                "component": "Component",
-                "properties": "Properties"
-            },
-            "componentsTab": "Components",
-            "componentsStoreFields": {
-                "id": "ID",
-                "name": "Name",
-                "state": "State",
-                "properties": "Properties",
-                "instances": "Instances",
-                "log": "Log",
-                "bundleName": "Bundle"
-            },
-            "messagesTab": "Messages",
-            "messagesStoreFields": {
-                "level": "Level",
-                "time": "Time",
-                "message": "Message",
-                "announcement": "Announcement"
-            },
-            "tools": {
-                "bundles": {
-                    "start": {
-                        "title": "Start Bundles",
-                        "tooltip": "Start Selected Bundles"
-                    },
-                    "stop": {
-                        "title": "Stop Bundles",
-                        "tooltip": "Stop Selected Bundles"
-                    }
-                },
-                "components": {
-                    "configure": {
-                        "title": "Configure Component",
-                        "tooltip": "Configure Selected Component"
-                    }
-                }
-            },
-            "dataView": {
-                "pager": {
-                    "backButtonTooltip": "Back",
-                    "forwardButtonTooltip": "Forward",
-                    "firstButtonTooltip": "First",
-                    "lastButtonTooltip": "Last",
-                    "pageLabelText": "Page ${currentPage} of ${endPage}",
-                    "zeroResultsText": "",
-                    "pageSizeLabelText": "${pageStartItemNumber}-${pageEndItemNumber} of ${itemCount}"
-                },
-                "filter": {
-                    "menuDefaultLabel": "All",
-                    "textBoxPlaceHolder": "Search..."
-                },
-                "DGRID": {
-                    "noDataMessage": "No Data.",
-                    "loadingMessage": "Loading Data..."
-                }
-            },
-            "dataFormNotInstalled": "The dataform bundle is not installed. To enable the component configuration feature add the dataform bundle to your app.json file."
         }
     },
     "coordinateconversion": {
@@ -783,14 +666,6 @@ module.exports = {
             "transformSrs": "Transform coordinates",
             "targetSrs": "Target SRS of the transformation",
             "targetSrsTooltip": "This SRS is only used if 'Transform coordinates' is enabled."
-        }
-    },
-    "cp1": {
-        "dataStore1": {
-            "data": "and more!"
-        },
-        "dataStore2": {
-            "data": "and much much more!"
         }
     },
     "custominfo-config": {
@@ -914,6 +789,10 @@ module.exports = {
         "tool": {
             "title": "Editing",
             "tooltip": "Create or update features"
+        },
+        "edititem": {
+            "label": "Edit item",
+            "tooltip": "Edit selected item"
         }
     },
     "editing-config": {
@@ -922,10 +801,10 @@ module.exports = {
         },
         "widget": {
             "description": "Configuration for the editing widget.",
-            "allowedWorkflows": {
-                "title": "Allowed workflows",
-                "create": "Create",
-                "update": "Update"
+            "visibleElements": {
+                "title": "Visible elements",
+                "create": "Create features",
+                "edit": "Edit features"
             },
             "allowFeatureTemplateFiltering": {
                 "title": "Allow feature template filtering",
@@ -950,7 +829,8 @@ module.exports = {
         }
     },
     "languagetoggler": {
-        "title": "Language"
+        "title": "Language",
+        "ariaLabel": "Language selection. Selected language is ${currentValue}"
     },
     "legend": {
         "tool": {
@@ -987,7 +867,7 @@ module.exports = {
             },
             "scaleLimitForZooming": {
                 "title": "Scale limit for zooming",
-                "tooltip": "Defines a minum scale for zooming. Requires zoom."
+                "tooltip": "Defines a minimum scale for zooming. Requires zoom."
             },
             "draw": {
                 "title": "Draw location on the map",
@@ -1004,8 +884,6 @@ module.exports = {
         }
     },
     "locator-store": {
-        "bundleName": "Esri Locator Service",
-        "bundleDescription": "This bundle provides a store for an Esri Geocoding Service.",
         "locator": {
             "name": "Addresses and places",
             "description": "Find addresses or places.",
@@ -1024,12 +902,12 @@ module.exports = {
         "url": "LocationFinder service URL",
         "urlTooltip": "URL of the search service REST endpoint. If empty then the World Geocode Server is used.",
         "countryCodeLabel": "Country code (e.g. DEU or GBR)",
-        "countryCodeLabelTooltip": "Defines the 3 digit country code to restict the search results.",
+        "countryCodeLabelTooltip": "Defines the 3 digit country code to restrict the search results.",
         "categoriesLabel": "Categories (e.g. City, District)",
-        "categoriesLabelTooltip": "Defines the categories to restict the search results."
+        "categoriesLabelTooltip": "Defines the categories to restrict the search results."
     },
     "map-init": {
-        "configLoadError": "Unexpected error during loading of the map configuration: {error}"
+        "configLoadError": "Unexpected error during loading of the map configuration: ${error}"
     },
     "map-init-config": {
         "initialView": {
@@ -1050,8 +928,8 @@ module.exports = {
             "selectedLayer": "Activated on app startup.",
             "editPlaceholder": "Select a map to show further details.",
             "openServiceUrlTooltip": "Open URL in new window.",
-            "comingSoon": "More configuration options are coming soon.",
             "dndList": {
+                "listActivator": "Show settings for layer ${itemId}",
                 "moveToTop": "Move to top",
                 "moveUp": "Move up",
                 "moveDown": "Move down",
@@ -1093,60 +971,14 @@ module.exports = {
     },
     "map-widget": {
         "layerLoadError": "Unexpected error during loading of layer: {layerId}",
-        "webmapLoadError": "Unexpected error during loading of webmap: {webmap}"
+        "webmapLoadError": "Unexpected error during loading of webmap: {webmap}",
+        "webgl": {
+            "unavailable": "WebGL is not supported by this device. The map cannot be displayed correctly.",
+            "partlyUnavailable": "WebGL is only available with reduced performance on this device. The map will therefore respond very slowly.",
+            "closeText": "Close"
+        }
     },
     "mapdraw-api": {},
-    "mapflow": {
-        "tool": {
-            "title": "Map Content",
-            "tooltip": "Map Content"
-        },
-        "ui": {
-            "transparency": "Transparency",
-            "transparencyTooltip": "Change transparency",
-            "zoomToTooltip": "Zoom to extent of category",
-            "showDetailsTooltip": "Show detail information",
-            "rotatorTooltip": "Rotate to front",
-            "deleteTooltip": "Delete",
-            "deleteQuestion": "Do you really want to delete this item?"
-        }
-    },
-    "mapflow-config": {
-        "menu": {
-            "title": "Map Flow"
-        },
-        "widget": {
-            "description": "Configuration of the Map Flow widget.",
-            "singleSelectionMode": {
-                "title": "Single activation",
-                "tooltip": "Allows only one map cover to be active at a time."
-            },
-            "autoZoomTo": {
-                "title": "Auto-zoom",
-                "tooltip": "Automatically zoom to cover's initial extent (if provided) on activation"
-            },
-            "visibleItems": {
-                "title": "Visible items",
-                "tooltip": "Number of visible items (min. 3)"
-            },
-            "nodeDepth": {
-                "title": "Node depth",
-                "tooltip": "Depth of tree on the cover's back side (min. 1)"
-            },
-            "showScrollBar": {
-                "title": "Show scrollbars",
-                "tooltip": "Show scrollbars on cover's back side."
-            },
-            "autoFlipActiveCover": {
-                "title": "Auto-flip",
-                "tooltip": "Automatically flip to the backside of the active cover."
-            },
-            "autoActivate": {
-                "title": "Auto-activate",
-                "tooltip": "Automatically activate the cover when it is in front."
-            }
-        }
-    },
     "mapnavigation": {
         "zoomInTool": {
             "title": "Zoom in",
@@ -1163,6 +995,14 @@ module.exports = {
         "compassTool": {
             "title": "Map orientation",
             "tooltip": "Align map to north"
+        },
+        "moveToPreviousViewTool": {
+            "title": "Previous View",
+            "tooltip": "Move to previous view"
+        },
+        "moveToNextViewTool": {
+            "title": "Next View",
+            "tooltip": "Move to next view"
         }
     },
     "measurement-2d": {
@@ -1186,6 +1026,7 @@ module.exports = {
             "distanceResultLabel": "Distance",
             "areaResultLabel": "Area",
             "areaPerimeterResultLabel": "Perimeter",
+            "copyResultToClipboard": "Copy measurement result to clipboard",
             "units": {
                 "metric": "Metric (automatic)",
                 "imperial": "Imperial (automatic)",
@@ -1237,7 +1078,7 @@ module.exports = {
             "square-kilometers": "Square Kilometers",
             "acres": "Acres",
             "ares": "Ares",
-            "hectares": "Hectars"
+            "hectares": "Hectares"
         }
     },
     "measurement-3d": {
@@ -1279,7 +1120,7 @@ module.exports = {
             "square-kilometers": "Square Kilometers",
             "acres": "Acres",
             "ares": "Ares",
-            "hectares": "Hectars"
+            "hectares": "Hectares"
         }
     },
     "native-app-exporter": {
@@ -1353,6 +1194,9 @@ module.exports = {
     "popups-default": {
         "defaultTitle": "Object"
     },
+    "portal-app-security": {
+        "denyMessage": "You don't have permission to access the app '${app}'."
+    },
     "portal-search": {
         "store": {
             "title": "ArcGIS Online Portal Item",
@@ -1399,7 +1243,7 @@ module.exports = {
         "widget": {
             "description": "Configuration of ArcGIS web map and web scene content.",
             "browser": {
-                "loginTool": "Portal for ArcGIS Login"
+                "loginTool": "ArcGIS Enterprise portal Login"
             },
             "item": {
                 "title": "ID",
@@ -1421,6 +1265,18 @@ module.exports = {
         "tool": {
             "title": "Printing",
             "tooltip": "Create a printout of the map"
+        }
+    },
+    "printing-config": {
+        "menu": {
+            "title": "ArcGIS for Server Printing"
+        },
+        "widget": {
+            "description": "Configuration for the ags printing functionality.",
+            "url": {
+                "title": "The URL to the AGS print service",
+                "tooltip": "AGS URL to print service."
+            }
         }
     },
     "reportmanagement": {
@@ -1500,13 +1356,102 @@ module.exports = {
     "reporttool": {
         "toolTitle": "Create Report",
         "windowTitle": "Report",
-        "reportRequestedWarning": "At least one item in the result center must be selected.",
+        "reportNoItemSelected": "At least one item in the result center must be selected.",
         "reportDatasourceUnavailable": "Unable to determine datasource for report.",
+        "reportDataSourceHasNoUrl": "Datasource has no URL and is therefore unsuitable for report generation.",
         "reportRequestedError": "Report could not be generated!",
         "reportRequestedErrorReeportId": "Could not determine the report to be generated! Is a mapping defined?",
         "reportQueryError": "Failed to query feature IDs from store.",
         "reportRequestedOpen": "Report is being generated...",
-        "reportRequestedDownload": "Report is being downloaded..."
+        "reportRequestedDownload": "Report is being downloaded...",
+        "action": {
+            "label": "Create report",
+            "tooltip": "Create a report as a PDF file"
+        }
+    },
+    "result-api": {
+        "geometryFetchError": "Geometries of '${name} could not be fetched. Error: ${error}",
+        "datasetUpdateError": "Update of '${name}' data failed. Error: ${error}",
+        "actions": {
+            "zoomto": {
+                "label": "Zoom to selection",
+                "tooltip": "Zoom to selected items"
+            },
+            "export": {
+                "label": "Download CSV",
+                "tooltip": "Download selected items as CSV file"
+            },
+            "zoomtoitem": {
+                "label": "Zoom to item",
+                "tooltip": "Zoom to item"
+            },
+            "removeitem": {
+                "label": "Remove item",
+                "tooltip": "Remove item from result display"
+            },
+            "removeselected": {
+                "label": "Remove items",
+                "tooltip": "Remove selected items from result display"
+            },
+            "openpopup": {
+                "label": "Open popup",
+                "tooltip": "Open popup for selected item"
+            }
+        }
+    },
+    "result-ui": {
+        "window": {
+            "title": "Results"
+        },
+        "dockTool": {
+            "title": "Results",
+            "tooltip": "Show results"
+        },
+        "general": {
+            "loadError": "Error while loading the results",
+            "loadingMessage": "Loading results...",
+            "maxRecordCountExceeded": "Result limit exceeded",
+            "maxRecordCountExceededTooltip": "More results were found than displayed here. If possible, refine your query to see all results relevant to you.",
+            "noItemsFound": "No results were found."
+        },
+        "dataTableSelection": {
+            "deleteButtonTooltip": "Remove topic from result display",
+            "ariaItemCount": "Topic has ${count} results.",
+            "collapseTopicSelection": "Hide topics",
+            "expandTopicSelection": "Show topics"
+        },
+        "actionsBar": {
+            "moreActions": "More actions",
+            "moreActionsTooltip": "show more actions"
+        },
+        "dataTableView": {
+            "result": "result",
+            "results": "results",
+            "filteredResultsLabel": "${filtered} of ${total} results",
+            "selected": "selected",
+            "markedItemsChipAria": "${count} results selected",
+            "filterActive": "Filter active",
+            "closeButton": "Close"
+        },
+        "filterInput": {
+            "filterPlaceholder": "Filter results ...",
+            "ariaLabel": "Input for result filtering",
+            "resetFilter": "Reset result filter"
+        },
+        "dataTableContent": {
+            "pageTextOf": "of",
+            "selectRow": "Select result",
+            "selectPage": "Select all results on this page",
+            "selectMoreTools": "More selection options",
+            "selectAllItems": "Select all results",
+            "deselectAllItems": "Clear selection",
+            "sortBySelectionState": "Sort by selection",
+            "invertSelection": "Invert selection"
+        },
+        "longStringValue": {
+            "ariaLabelTextPrefix": "Shortened text, starting with",
+            "ariaLabelBtn": "Show full text"
+        }
     },
     "resultcenter": {
         "bundleName": "Result Center",
@@ -1524,9 +1469,6 @@ module.exports = {
             },
             "selectAllBtn": {
                 "title": "Select All"
-            },
-            "deselectBtn": {
-                "title": "Deselect"
             },
             "removeAllBtn": {
                 "title": "Empty Result Center"
@@ -1571,6 +1513,17 @@ module.exports = {
         "ruler": "Ruler",
         "line": "Line"
     },
+    "search-ui": {
+        "search": {
+            "placeholder": "Search for ...",
+            "noResultsMessage": "No results found",
+            "noEmptyAllowed": "Enter a search term first",
+            "totalResultsHint": "${total} results",
+            "resetSearch": "Reset search input",
+            "resultItemAriaLabel": "${itemLabel} in ${groupName}",
+            "enterTooltip": "Search for ..."
+        }
+    },
     "selection-resultcenter": {
         "ui": {
             "title": "Results",
@@ -1597,7 +1550,6 @@ module.exports = {
             }
         }
     },
-    "selection-tools": {},
     "selection-ui": {
         "ui": {
             "tool": {
@@ -1607,9 +1559,13 @@ module.exports = {
             "widget": {
                 "labelFilterButton": "Restrict to topics (${selectedCount} out of ${itemCount})",
                 "labelNoToolsAvailable": "There are no selection tools configured. Please contact the Administrator.",
-                "labelSelectionHint": "The selection is restricted to ${selectedCount} of ${itemCount} available topics.",
-                "labelSelectionMethod": "Selection tool",
-                "labelNoStoreSelected": "Activate at least one selection topic."
+                "labelNoToolSelected": "Activate a selection tool to continue.",
+                "labelNoStoreSelected": "Activate at least one selection topic to continue.",
+                "labelCloseSelectionList": "Close topic restriction",
+                "labelReplaceExistingSelection": "Replace existing results.",
+                "labelStartNonInteractiveAction": "Execute selection",
+                "ariaLabelSelectAllTopics": "Select all topics",
+                "ariaLabelToggleButtonbar": "Choose a selection method"
             }
         }
     },
@@ -1713,52 +1669,10 @@ module.exports = {
         }
     },
     "splashscreen": {
-        "loadTitle": "Starting App '{appName}'",
-        "loadBundle": "{percent}% - {startedBundles}/{maxBundlesToStart} - Load {name} "
-    },
-    "store-api": {},
-    "templates": {
-        "selectorLabelTitle": "View"
-    },
-    "templates-config": {
-        "menu": {
-            "title": "Layout Template"
-        },
-        "widget": {
-            "description": "Select an app layout template. The layout determines the structure of the app and the position of the UI elements. This will be the layout which is used by the app by default.",
-            "selectedTemplate": {
-                "title": "Selected layout template:",
-                "tooltip": "Select a layout template which should be used by the app"
-            }
-        }
-    },
-    "test1": {
-        "i18n_overwrite": "FAILED",
-        "appOverwrite": "FAILED",
-        "own": "SUCCESS"
-    },
-    "testbundles-system": {
-        "bundleName": "System Bundle",
-        "bundleDescription": "These are the core functionalities of the framework!"
-    },
-    "themes": {
-        "selectorLabelTitle": "Style"
-    },
-    "themes-config": {
-        "menu": {
-            "title": "Design Theme"
-        },
-        "widget": {
-            "description": "Select a design theme for the app. The theme defines visual appearance of the app; the colors, icons, fonts, etc.",
-            "selectedTheme": {
-                "title": "Selected design theme:",
-                "tooltip": "Select a design theme which should be used by the app"
-            }
-        }
+        "loadTitle": "Starting App '${appName}'",
+        "loadBundle": "${percent}% - ${startedBundles}/${maxBundlesToStart} - Load ${name} "
     },
     "toc": {
-        "bundleName": "TOC",
-        "bundleDescription": "The TOC is a Widget that allows you to control the map content.",
         "zoomToExtent": "Zoom to extent",
         "description": "Description",
         "labelMore": "more",
@@ -1768,16 +1682,18 @@ module.exports = {
         "opacity": "Opacity",
         "visible": "visible",
         "invisible": "invisible",
-        "basemaps": "Basemaps",
+        "basemapsSectionTitle": "Basemaps",
         "ground": "Ground",
-        "layers": "Operational Layer",
+        "layersSectionTitle": "Layers",
         "noLayersAvailable": "No map contents available",
         "operationalLayerOptions": "Options",
         "showAllLayer": "Activate all layers",
         "hideAllLayer": "Deactivate all layers",
         "openAllLayer": "Open all layers",
         "closeAllLayer": "Close all layers",
-        "close": "Close",
+        "showChildren": "Show child elements of ${itemTitle}",
+        "hideChildren": "Hide child elements of ${itemTitle}",
+        "close": "Close menu",
         "backToMap": "Back to map",
         "service": "Service",
         "layer": "Layer",
@@ -1787,56 +1703,16 @@ module.exports = {
             "notVisibleInScaleMax": "Content shown until scale is below 1:${maxScale}.",
             "notVisibleInScaleMin": "Content is only shown when scale is at least 1:${minScale}."
         },
+        "noSublayersVisible": "No associated contents are shown.",
         "notLoadedHint": "Initialization failed.",
         "toggleToolTitle": "Map Content",
-        "toggleToolTooltip": ""
-    },
-    "toolset-config": {
-        "menu": {
-            "title": "Toolset Configuration"
-        },
-        "widget": {
-            "rootLabel": "Toolset",
-            "addToolsetLabel": "Add new toolset",
-            "saveToolsetLabel": "Save toolset",
-            "deleteToolsetLabel": "Delete toolset",
-            "defaultToolsetTitle": "Unnamed toolset",
-            "unassignedToolsetTitle": "Unassigned tools",
-            "selectToolsetHint": "Select a toolset from the list on the left to configure",
-            "saveDeleteQuery": "Do you really want to delete toolset '{title}'?",
-            "deleteEntryLabel": "Delete entry",
-            "saveDeleteEntryQuery": "Do you really want to delete entry '{title}'?",
-            "defaultEntryTitle": "Unnamed entry",
-            "toolset": {
-                "title": "Title",
-                "tooltip": "Tooltip",
-                "windowType": "Window type",
-                "fixed": "fixed",
-                "floating": "floating",
-                "css_positioned": "CSS positioned",
-                "leftCollapsed": "left collapsed",
-                "rightCollapsed": "right collapsed",
-                "topCollapsed": "top collapsed",
-                "bottomCollapsed": "bottom collapsed",
-                "dropdown": "dropdown",
-                "toolipDialog": "toolip dialog",
-                "menu": "menu",
-                "menubar": "menubar",
-                "menuitem": "menuitem",
-                "menubaritem": "menubaritem",
-                "position": "Position",
-                "top": "top",
-                "bottom": "bottom",
-                "left": "left",
-                "right": "right",
-                "styleClass": "Style class",
-                "closable": "Closable",
-                "maxHorizontal": "Maximal number of tools in a row",
-                "notitle": "Hide window-title",
-                "showToolLabels": "Show tool-labels",
-                "description": "<b>Window type:</b><br />Toolsets can be order as followed: fixed, floating or collapsed on one of the screen edges.<br /><b>Position:</b><br />The postion can be defined relative to the left or right, as well as to the top or bottom screen page. The distances are defined as pixel. Toolsets with type 'fixed' or 'floating' can be positioned anywhere on the map. A collapsed Toolset can only be positioned along a screen edge.<br /><b>Style class:</b><br />If the titlebar of a Toolset with type 'fixed' shall be hidden, choose 'Hide title'."
-            }
-        }
+        "toggleToolTooltip": "",
+        "showLegend": "Show legend for layer ${layerTitle}",
+        "hideLegend": "Hide legend for layer ${layerTitle}",
+        "actionMenuToggle": "More options",
+        "actionMenuToggleAria": "Show options for layer ${layerTitle}",
+        "activateLayer": "Show ${itemTitle} on map",
+        "deactivateLayer": "Hide ${itemTitle} on map"
     },
     "viewmodeswitcher": {
         "tool2d": {
@@ -1846,36 +1722,6 @@ module.exports = {
         "tool3d": {
             "title": "3D Map",
             "tooltip": "Switch to 3D map"
-        }
-    },
-    "windowmanager": {
-        "defaultWindowTitle": "Window",
-        "closeBtn": {
-            "title": "Close"
-        },
-        "minimizeBtn": {
-            "title": "Minimize"
-        },
-        "maximizeBtn": {
-            "title": "Maximize"
-        },
-        "restoreBtn": {
-            "title": "Restore"
-        },
-        "opacityBtn": {
-            "title": "Change transparency"
-        },
-        "collapseBtn": {
-            "title": "Hide content"
-        },
-        "loading": {
-            "title": "Please wait...",
-            "message": "Loading..."
-        },
-        "okcancel": {
-            "title": "Warning",
-            "okButton": "Ok",
-            "cancelButton": "Cancel"
         }
     },
     "wizard": {
@@ -1894,7 +1740,7 @@ module.exports = {
                 "defaultValidationErrorMessage": "Please check your input(s)!"
             },
             "saveStart": "Saving started...",
-            "saveError": "Saving failed: {message}",
+            "saveError": "Saving failed: ${message}",
             "saveSuccess": "App saved",
             "unknownError": "Reason unknown",
             "notAppliedConfigChanges": {
@@ -1904,46 +1750,8 @@ module.exports = {
                 "cancelButton": "Discard"
             },
             "configChangesCanNotBeReverted": "The current configuration changes cannot be reverted! You have to apply them!",
-            "loadConfigBundles": "Initializing configuration bundles ({pos}/{count}). Please be patient.",
-            "configureBtn": "Live Configuration",
-            "bundleStart": "On",
-            "bundleStartMessage": "Start Bundle '{name}({symname})'!",
-            "bundleStartMessageSuccess": "Bundle '{name}({symname})' started successfully!",
-            "bundleStartMessageFailure": "Start of bundle '{name}({symname})' failed! {error}",
-            "bundleStop": "Off",
-            "bundleStopMessage": "Stop Bundle '{name}({symname})'",
-            "bundleStopMessageSuccess": "Bundle '{name}({symname})' successfully stopped!",
-            "bundleStopMessageFailure": "Stop of bundle '{name}({symname})' failed! {error}",
-            "bundleInfo": {
-                "components": "Components",
-                "bundleIdentifier": "Identifier",
-                "bundleName": "Name",
-                "bundleDescription": "Description",
-                "bundleVersion": "Version",
-                "bundleLocation": "Url",
-                "bundleCopyRight": "Copyright",
-                "bundleState": "State",
-                "bundleVendor": "Vendor",
-                "bundleCategory": "Categories",
-                "bundleContactAddress": "Contact Address",
-                "bundleDocUrl": "Documentation",
-                "bundleLicense": "License",
-                "bundleLicenseUrl": "LicenseUrl",
-                "bundleProductName": "Product Name"
-            },
-            "componentInfo": {
-                "component": "Component",
-                "componentIdentifier": "Identifier",
-                "componentName": "Name",
-                "componentState": "State",
-                "componentInstances": "Instances",
-                "componentLog": "Log",
-                "jsonError": "Invalid JSON Format: {error}",
-                "commonDescription": "Here you can change the configuration of a Component via json configuration editing. <b>Please be carefull!</b>",
-                "factoryCreateHint": "This Component is a 'Component Factory'! Defining a new configuration will create a new component!",
-                "factoryDeleteHint": "This Component is a 'Component Factory' item! Clearing the textfield will delete the component!",
-                "notConfigurableHint": "This Component cannot be configured."
-            }
+            "loadConfigBundles": "Initializing configuration bundles (${pos}/${count}). Please be patient.",
+            "configureBtn": "Live Configuration"
         },
         "menu": {
             "main": {
@@ -1970,11 +1778,8 @@ module.exports = {
                 "description": "Defines the visual layout and design of the app."
             },
             "agol": {
-                "title": "ArcGIS Online and Portal for ArcGIS",
+                "title": "ArcGIS Online and ArcGIS Enterprise portal",
                 "description": "Defines webmap and portal login configuration."
-            },
-            "bundles": {
-                "title": "Advanced Configuration (Bundles)"
             }
         }
     }
